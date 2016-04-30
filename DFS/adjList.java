@@ -1,45 +1,46 @@
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.Stack;
 
-public class adjList {
-	static int vertexCount;
-	static int edgeCount;
-	static boolean[] visit;
-	static ArrayList<ArrayList<Integer>> adjacentList;
+public class AdjList {
+	static int vertexCount=0;
+	static ArrayList<ArrayList<Integer>> adjListHead;
+	static boolean[] visited;
 	
-	public static void DFS(int i){
-		visit[i] = true;
-		System.out.print((char)(i+65) + " ");
+	public static void DFS(int vertex){
+		visited[vertex] = true;
+		System.out.print((char)(vertex+65) + " ");
 		
-		for(int j : adjacentList.get(i)){
-			if(visit[j] == false)
+		for(int j : adjListHead.get(vertex)){
+			if(!visited[j])
 				DFS(j);
 		}
 	}
 	
+	public static void createGraph(int count){
+		vertexCount = count;
+		adjListHead = new ArrayList(vertexCount);
+		visited = new boolean[vertexCount];
+		
+		for(int i = 0; i < vertexCount; i++)
+			adjListHead.add(new ArrayList());
+	}
+	
+	public static void insertEdge(int start, int end){
+		adjListHead.get(start).add(end);
+		adjListHead.get(end).add(start);
+	}
+	
 	public static void main(String[] args){
-		Scanner scan = new Scanner(System.in);
-		System.out.print("Type the number of vertexs : ");
-		vertexCount = scan.nextInt();
-		System.out.print("Type the number of edges : ");
-		edgeCount = scan.nextInt();
-		adjacentList = new ArrayList(vertexCount + 1);
-		visit = new boolean[vertexCount + 1];
+		createGraph(7);
 		
-		for(int i = 0; i < vertexCount+1; i++){
-			adjacentList.add(new ArrayList());
-		}
+		insertEdge(0, 1);
+		insertEdge(0, 2);
+		insertEdge(1, 3);
+		insertEdge(1, 4);
+		insertEdge(2, 4);
+		insertEdge(3, 6);
+		insertEdge(4, 6);
+		insertEdge(5, 6);
 		
-		for(int i = 0; i < edgeCount; i++){
-			System.out.print("Type the number of head vertex : ");
-			int t1 = scan.nextInt();
-			System.out.print("Type the number of tail vertex : ");
-			int t2 = scan.nextInt();
-			
-			adjacentList.get(t1).add(t2);
-			adjacentList.get(t2).add(t1);
-		}
 		DFS(0);
 	}
 }
