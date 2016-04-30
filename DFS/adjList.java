@@ -41,6 +41,7 @@ public class AdjList {
 		insertEdge(4, 6);
 		insertEdge(5, 6);
 		
+		System.out.println("////////// DFS>>>>>>>>");
 		DFS(0);
 	}
 }
