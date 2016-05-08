@@ -1,0 +1,6 @@
+문자열에서 문자를 효율적으로 삭제하는 함수를 작성하라. 함수 원형은 다음과 같다.
+String removeChars(string str, string remove);
+remove라는 인자로 전달된 문자열에 있는 모든 문자를 str이라는 문자열에서 삭제한다.
+예를 들어, str이 Battle of the Vowels Hawaii vs. Gronzny로 주어지고 remove가
+aeiou로 주어진다면 이 함수에서 str을 Bttl f th Vwls Hw vs. Grzny로 변환시켜야 한다.
+자신이 함수를 설계한 방식에 대해 합당한 근거를 제시하고 풀이의 효율에 대해 논하라.
