@@ -23,7 +23,8 @@ public class ActorGraphNode {
 		return baconNumber;
 	}
 	
-	public void setBaconNumbers(){
+	//케빈 베이컨 노드에 대해서만 호출함
+	public void getBaconNumbers(){
 		baconNumber = 0;
 		Queue<ActorGraphNode> queue = new LinkedList<ActorGraphNode>();
 		queue.add(this);
