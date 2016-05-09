@@ -40,7 +40,7 @@ public class BinarySearch {
 		if(array[lower] > array[upper])
 			throw new Exception("Array is not sorted");
 		
-		int center = (range/2)+lower;
+		int center = (upper + lower)/2;
 		if(target == array[center])
 			return center;
 		else if(target > array[center])
