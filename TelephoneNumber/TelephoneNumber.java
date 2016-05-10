@@ -27,6 +27,8 @@ public class TelephoneNumber {
 		return button.get(telephoneKey).charAt(place-1);
 	}
 	
+	/*
+	//recursion
 	public void printWord(){
 		printWords(0);
 	}
@@ -43,7 +45,38 @@ public class TelephoneNumber {
 				return ;
 		}
 	}
+	*/
 	
+	//Non-Recursion
+	public void printWord(){
+		for(int i = 0; i < PHONE_NUMBER_LENGTH; i++)
+			result[i] = getCharKey(phoneNum[i], 1);
+		
+		for(;;){
+			for(int i = 0; i < PHONE_NUMBER_LENGTH; i++){
+				System.out.print(result[i]);
+			}
+			System.out.print('\n');
+			
+			for(int i = PHONE_NUMBER_LENGTH-1; i >= -1; i--){
+				if(i == -1)
+					return ;
+				
+				if(getCharKey(phoneNum[i], 3) == result[i] ||
+						phoneNum[i] == 0 || phoneNum[i] == 1){
+							result[i] = getCharKey(phoneNum[i], 1);
+				}
+				else if(getCharKey(phoneNum[i], 1) == result[i]){
+					result[i] = getCharKey(phoneNum[i], 2);
+					break;
+				}
+				else if(getCharKey(phoneNum[i], 2) == result[i]){
+					result[i] = getCharKey(phoneNum[i], 3);
+					break;
+				}
+			}
+		}
+	}
 	public static void main(String[] args){
 		int[] phoneNum = {8, 6, 6, 2, 6, 6, 5};
 		new TelephoneNumber(phoneNum).printWord();
